@@ -30,10 +30,12 @@ public class ProductsController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(Product product) {
+	public ModelAndView save(Product product) {
 		System.out.println("Cadastrando o produto");
 		productDAO.save(product);
-		return "redirect:produtos";
+		ModelAndView modelAndView = new ModelAndView("redirect:produtos");
+		modelAndView.addObject("sucesso", "Produto cadastrado com sucesso");
+		return modelAndView;
 	}
 
 	@RequestMapping(method=RequestMethod.GET)
