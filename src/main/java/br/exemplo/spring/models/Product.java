@@ -1,5 +1,9 @@
 package br.exemplo.spring.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +20,8 @@ public class Product {
 	@Lob
 	private String description;
 	private int pages;
+	@ElementCollection
+	private List<Price> prices = new ArrayList<Price>();
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -43,6 +49,14 @@ public class Product {
 
 	public int getPages() {
 		return pages;
+	}
+
+	public List<Price> getPrices() {
+		return prices;
+	}
+
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
 	}
 
 	
