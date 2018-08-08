@@ -3,13 +3,13 @@ package br.exemplo.spring.conf;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import br.exemplo.spring.controllers.HomeController;
+import br.exemplo.spring.controllers.ProductsController;
+import br.exemplo.spring.daos.ProcuctDAO;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses= {HomeController.class})
+@ComponentScan(basePackageClasses= {ProductsController.class, ProcuctDAO.class})
 public class AppWebConfiguration {
 	
 	@Bean

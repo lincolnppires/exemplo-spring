@@ -1,0 +1,7 @@
+br/exemplo/spring/controllers/ProductsController.class
+br/exemplo/spring/conf/ServletSpringMVC.class
+br/exemplo/spring/controllers/HomeController.class
+br/exemplo/spring/models/Product.class
+br/exemplo/spring/conf/AppWebConfiguration.class
+br/exemplo/spring/conf/JPAConfiguration.class
+br/exemplo/spring/daos/ProcuctDAO.class
