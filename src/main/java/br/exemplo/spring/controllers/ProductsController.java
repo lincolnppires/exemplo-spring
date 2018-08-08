@@ -19,7 +19,7 @@ public class ProductsController {
 	@Autowired
 	private ProcuctDAO productDAO;
 
-	@RequestMapping("/form")
+	@RequestMapping("/produtos/form")
 	public ModelAndView form() {
 		System.out.println("método form");
 		ModelAndView modelAndView = new ModelAndView("products/form");
