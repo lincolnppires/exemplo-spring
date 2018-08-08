@@ -14,12 +14,13 @@ import br.exemplo.spring.models.Product;
 
 @Transactional
 @Controller
+@RequestMapping("/produtos")
 public class ProductsController {
 
 	@Autowired
 	private ProcuctDAO productDAO;
 
-	@RequestMapping("/produtos/form")
+	@RequestMapping("/form")
 	public ModelAndView form() {
 		System.out.println("método form");
 		ModelAndView modelAndView = new ModelAndView("products/form");
@@ -28,14 +29,14 @@ public class ProductsController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/produtos", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String save(Product product) {
 		System.out.println("Cadastrando o produto");
 		productDAO.save(product);
 		return "products/ok";
 	}
 
-	@RequestMapping(value = "/produtos", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView modelAndView = new ModelAndView("products/list");
 		modelAndView.addObject("products", productDAO.list());
