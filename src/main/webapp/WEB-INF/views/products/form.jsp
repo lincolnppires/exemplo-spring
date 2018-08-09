@@ -11,8 +11,8 @@
 </head>
 <body>
 
-	<form method="post" action="/exemplo-spring/produtos"> 
-						<!--action= ${spring:mvcUrl('saveProduct').build()} -->
+	<form method="post" action="/exemplo-spring/produtos">
+		<!--action= ${spring:mvcUrl('saveProduct').build()} -->
 		<div>
 			<label for="title">Titulo-></label> <input type="text" name="title"
 				id="title" />
@@ -39,12 +39,15 @@
 		<div>
 			<spring:hasBindErrors name="product">
 				<ul>
-					<c:forEach items="${errors.allErrors}" var="error">
-						<li>${error.code}</li>
+					<c:forEach var="error" items="${errors.allErrors}">
+						<li><spring:message code="${error.code}"
+								text="${error.defaultMessage}" /></li>
 					</c:forEach>
 				</ul>
 			</spring:hasBindErrors>
+
 		</div>
+
 
 
 
