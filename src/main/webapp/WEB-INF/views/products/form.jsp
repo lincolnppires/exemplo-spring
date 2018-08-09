@@ -13,18 +13,6 @@
 <body>
 
 	<div>
-		<spring:hasBindErrors name="product">
-			<ul>
-				<c:forEach var="error" items="${errors.allErrors}">
-					<li><spring:message code="${error.code}"
-							text="${error.defaultMessage}" /></li>
-				</c:forEach>
-			</ul>
-		</spring:hasBindErrors>
-	</div>
-
-
-	<div>
 		<form:form method="post" action="/exemplo-spring/produtos"
 			modelAttribute="product">
 			<!--action= ${spring:mvcUrl('saveProduct').build()} -->

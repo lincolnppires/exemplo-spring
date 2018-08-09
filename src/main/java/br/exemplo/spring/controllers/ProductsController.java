@@ -25,7 +25,7 @@ public class ProductsController {
 	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-		binder.setValidator(new ProductValidator());
+		//binder.setValidator(new ProductValidator());
 	}
 
 	@Autowired

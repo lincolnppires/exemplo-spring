@@ -16,9 +16,9 @@ public class ProductValidator implements Validator{
 		
 		Product product = (Product) target;
 		
-		if(product.getPages() == 0) {
-			errors.rejectValue("pages", "typeMismatch.product.pages");
-		}
+//		if(product.getPages() == 0) {
+//			errors.rejectValue("pages", "typeMismatch.product.pages");
+//		}
 	}
 	
 	@Override
