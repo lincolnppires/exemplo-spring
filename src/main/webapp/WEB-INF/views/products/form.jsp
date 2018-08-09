@@ -29,8 +29,8 @@
 			modelAttribute="product">
 			<!--action= ${spring:mvcUrl('saveProduct').build()} -->
 			<div>
-				<label for="title">Titulo-></label> <input type="text" name="title"
-					id="title" />
+				<label for="title">Titulo-></label> 
+				<form:input path="title"/>
 				<form:errors path="title" />
 			</div>
 

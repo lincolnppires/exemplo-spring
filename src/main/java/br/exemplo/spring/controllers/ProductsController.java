@@ -32,7 +32,7 @@ public class ProductsController {
 	private ProcuctDAO productDAO;
 
 	@RequestMapping("/form")
-	public ModelAndView form() {
+	public ModelAndView form(Product product) {
 		System.out.println("método form");
 		ModelAndView modelAndView = new ModelAndView("products/form");
 		modelAndView.addObject("types", BookType.values());
@@ -46,7 +46,7 @@ public class ProductsController {
 		
 		if(bindingResult.hasErrors()) {
 			System.out.println("existe erro");
-			return form();
+			return form(product);
 		}
 
 		productDAO.save(product);
