@@ -1,6 +1,8 @@
 package br.exemplo.spring.models;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -12,12 +14,13 @@ import javax.persistence.Lob;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotBlank
 	private String title;
@@ -25,13 +28,14 @@ public class Product {
 	@NotBlank
 	private String description;
 	@Min(30)
-	private int pages;
+	private Integer pages;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private LocalDate releaseDate;
+	@DateTimeFormat
+	private Calendar dateTemp;
 	@ElementCollection
 	private List<Price> prices = new ArrayList<Price>();
 
-	
-	
-	
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -40,7 +44,7 @@ public class Product {
 		this.description = description;
 	}
 
-	public void setPages(int pages) {
+	public void setPages(Integer pages) {
 		this.pages = pages;
 	}
 
@@ -56,8 +60,24 @@ public class Product {
 		return description;
 	}
 
-	public int getPages() {
+	public Integer getPages() {
 		return pages;
+	}
+
+	public LocalDate getReleaseDate() {
+		return releaseDate;
+	}
+
+	public Calendar getDateTemp() {
+		return dateTemp;
+	}
+
+	public void setDateTemp(Calendar dateTemp) {
+		this.dateTemp = dateTemp;
+	}
+
+	public void setReleaseDate(LocalDate releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 
 	public List<Price> getPrices() {
@@ -68,5 +88,4 @@ public class Product {
 		this.prices = prices;
 	}
 
-	
 }

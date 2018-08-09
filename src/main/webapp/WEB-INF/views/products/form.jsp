@@ -17,20 +17,33 @@
 			modelAttribute="product">
 			<!--action= ${spring:mvcUrl('saveProduct').build()} -->
 			<div>
-				<label for="title">Titulo-></label> 
-				<form:input path="title"/>
+				<label for="title">Titulo-></label>
+				<form:input path="title" />
 				<form:errors path="title" />
 			</div>
 
 			<div>
 				<label for="description">Descrição</label>
-				<textarea rows="10" cols="20" name="description" id="description"></textarea>
+				<form:textarea rows="10" cols="20" path="description"
+					id="description"></form:textarea>
 				<form:errors path="description" />
 			</div>
 			<div>
-				<label for="pages">Número de paginas</label> <input type="text"
-					name="pages" id="pages" />
+				<label for="pages">Número de paginas</label> 
+				<form:input  path="pages" name="pages" id="pages" />
 				<form:errors path="pages" />
+			</div>
+
+			<div>
+				<label for="releaseDate">Data de Lançamento -  formato por anotação </label> 
+				<form:input path="releaseDate" id="releaseDate"/>
+				<form:errors path="releaseDate" />
+			</div>
+			
+			<div>
+				<label for="dateTemp">Data- formato registro bean</label> 
+				<form:input path="dateTemp" id="dateTemp"/>
+				<form:errors path="dateTemp" />
 			</div>
 
 			<c:forEach items="${types}" var="bookType" varStatus="status">
