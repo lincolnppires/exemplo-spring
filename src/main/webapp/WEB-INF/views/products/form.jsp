@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,8 @@
 </head>
 <body>
 
-	<form method="post" action="/exemplo-spring/produtos">
+	<form method="post" action="/exemplo-spring/produtos"> 
+						<!--action= ${spring:mvcUrl('saveProduct').build()} -->
 		<div>
 			<label for="title">Titulo-></label> <input type="text" name="title"
 				id="title" />
@@ -33,6 +35,17 @@
 					name="prices[${status.index}].bookType" value="${bookType}" />
 			</div>
 		</c:forEach>
+
+		<div>
+			<spring:hasBindErrors name="product">
+				<ul>
+					<c:forEach items="${errors.allErrors}" var="error">
+						<li>${error.code}</li>
+					</c:forEach>
+				</ul>
+			</spring:hasBindErrors>
+		</div>
+
 
 
 		<div>
