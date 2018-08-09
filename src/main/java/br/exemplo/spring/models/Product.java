@@ -23,6 +23,9 @@ public class Product {
 	@ElementCollection
 	private List<Price> prices = new ArrayList<Price>();
 
+	
+	
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
