@@ -12,7 +12,7 @@
 <body>
 	<section>
 
-		<form:form servletRelativeAction="/shopping">
+		<form:form servletRelativeAction="/shopping" method="POST">
 
 			<input type="hidden" value="${product.id}" name="productId" />
 
@@ -29,7 +29,8 @@
 				</c:forEach>
 			</ul>
 			<input type="submit" alt="Compre agora"
-				title="Compre agora ' ${product.title}'!" value="comprar" />
+				title="Compre agora '${product.title}' !" 
+				value="comprar" />
 
 		</form:form>
 

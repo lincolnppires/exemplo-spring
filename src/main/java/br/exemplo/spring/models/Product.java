@@ -24,7 +24,7 @@ public class Product {
 	private Integer id;
 	@NotBlank
 	private String title;
-	@Lob
+	//@Lob
 	@NotBlank
 	private String description;
 	@Min(30)

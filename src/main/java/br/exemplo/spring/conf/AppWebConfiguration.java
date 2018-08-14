@@ -16,9 +16,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import br.exemplo.spring.component.FileSaver;
 import br.exemplo.spring.controllers.ProductsController;
 import br.exemplo.spring.daos.ProcuctDAO;
+import br.exemplo.spring.models.ShoppingCart;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { ProductsController.class, ProcuctDAO.class, FileSaver.class })
+@ComponentScan(basePackageClasses = { ProductsController.class, ProcuctDAO.class, FileSaver.class, ShoppingCart.class })
 public class AppWebConfiguration {
 
 	@Bean
