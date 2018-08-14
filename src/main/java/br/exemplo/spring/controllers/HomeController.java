@@ -12,4 +12,10 @@ public class HomeController {
 		return "hello-world";
 	}
 	
+	@RequestMapping("/testetagfiles")
+	public String testetagfiles() {
+		System.out.println("testetagfiles	");
+		return "testeTagfile";
+	}
+	
 }
