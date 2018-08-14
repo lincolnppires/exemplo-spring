@@ -33,8 +33,9 @@ public class ProductsController {
 
 	@Autowired
 	private ProcuctDAO productDAO;
-	@Autowired
-	private FileSaver fileSaver;
+	
+//	@Autowired
+//	private FileSaver fileSaver;
 
 	@RequestMapping("/form")
 	public ModelAndView form(Product product) {
@@ -55,8 +56,8 @@ public class ProductsController {
 			return form(product);
 		}
 
-		String webPath = fileSaver.write("uploaded-images",summary);
-		product.setSummaryPath(webPath);
+		//String webPath = fileSaver.write("uploaded-images",summary);
+		//product.setSummaryPath(webPath);
 		productDAO.save(product);
 
 		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso");
