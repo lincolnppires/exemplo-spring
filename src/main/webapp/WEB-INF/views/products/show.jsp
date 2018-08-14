@@ -52,6 +52,10 @@
 				<p></p>
 			</section>
 		</div>
+		
+		<div>
+			<a href="" rel="nofollow">Seu carrinho (${shoppingCart.quantity})
+		</div>
 
 
 	</section>
