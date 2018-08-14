@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.validation.ParameterNameProvider;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +25,18 @@ public class ProcuctDAO {
 		List<Product> resultList = manager.createQuery("select distinct(p) from Product p join fetch p.prices order by p.id desc", Product.class)
 										.getResultList();
 		return resultList;
+	}
+
+	public Product find(Integer id) {
+		
+		TypedQuery<Product> createQuery = manager.createQuery("select (p) from Product p join fetch p.prices "
+				+ "where p.id = :pId order by p.id desc ", Product.class);
+		
+		createQuery.setParameter("pId", id);
+		Product product = createQuery.getSingleResult();
+		
+		return product;
+		
 	}
 
 }
