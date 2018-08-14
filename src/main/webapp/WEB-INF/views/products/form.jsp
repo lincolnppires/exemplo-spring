@@ -14,7 +14,9 @@
 
 	<div>
 		<form:form method="post" action="/exemplo-spring/produtos"
-			modelAttribute="product">
+			modelAttribute="product"
+			enctype="multipart/form-data"
+			>
 			<!--action= ${spring:mvcUrl('saveProduct').build()} -->
 			<div>
 				<label for="title">Titulo-></label>
@@ -41,7 +43,7 @@
 			</div>
 			
 			<div>
-				<label for="dateTemp">Data- formato registro bean</label> 
+				<label for="dateTemp">Data - formato registro bean</label> 
 				<form:input path="dateTemp" id="dateTemp"/>
 				<form:errors path="dateTemp" />
 			</div>
@@ -54,6 +56,14 @@
 						name="prices[${status.index}].bookType" value="${bookType}" />
 				</div>
 			</c:forEach>
+			
+			<br />
+			<div>
+				<label for="summary">Sumário do Livro</label>
+				<input type="file" name="summary">
+				<form:errors path="summaryPath" />
+			</div>
+			
 
 			<div>
 				<input type="submit" value="Enviar">

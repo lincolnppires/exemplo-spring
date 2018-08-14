@@ -20,7 +20,7 @@ public class ProcuctDAO {
 	}
 
 	public List<Product> list() {
-		List<Product> resultList = manager.createQuery("select distinct(p) from Product p join fetch p.prices", Product.class)
+		List<Product> resultList = manager.createQuery("select distinct(p) from Product p join fetch p.prices order by p.id desc", Product.class)
 										.getResultList();
 		return resultList;
 	}

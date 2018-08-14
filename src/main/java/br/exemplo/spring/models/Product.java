@@ -35,6 +35,7 @@ public class Product {
 	private Calendar dateTemp;
 	@ElementCollection
 	private List<Price> prices = new ArrayList<Price>();
+	private String summaryPath;
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -87,5 +88,15 @@ public class Product {
 	public void setPrices(List<Price> prices) {
 		this.prices = prices;
 	}
+
+	public String getSummaryPath() {
+		return summaryPath;
+	}
+
+	public void setSummaryPath(String summaryPath) {
+		this.summaryPath = summaryPath;
+	}
+	
+	
 
 }
