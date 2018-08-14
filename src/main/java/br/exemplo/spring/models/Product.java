@@ -1,5 +1,6 @@
 package br.exemplo.spring.models;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,6 +37,13 @@ public class Product {
 	@ElementCollection
 	private List<Price> prices = new ArrayList<Price>();
 	private String summaryPath;
+	
+	public BigDecimal priceFor(BookType bookType) {
+		return prices
+				.stream()
+				.filter(price -> price.getBookType().equals(bookType))
+				.findFirst().get().getValue();
+	}
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -96,6 +104,8 @@ public class Product {
 	public void setSummaryPath(String summaryPath) {
 		this.summaryPath = summaryPath;
 	}
+
+	
 	
 	
 

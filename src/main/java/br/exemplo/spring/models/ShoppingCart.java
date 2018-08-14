@@ -1,6 +1,8 @@
 package br.exemplo.spring.models;
 
 import java.awt.ItemSelectable;
+import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -29,5 +31,24 @@ public class ShoppingCart {
 	public Integer getQuantity() {
 		return items.size();
 	}
+	
+	public Collection<ShoppingItem> getList() {
+		return items.keySet();
+	}
+	
+	private BigDecimal getTotal(ShoppingItem item) {
+		return item.getTotal(getQuantity(item));
+	}
+
+	public BigDecimal getTotal() {
+
+		BigDecimal total = BigDecimal.ZERO;
+		
+		for(ShoppingItem item : items.keySet()){
+			total = total.add(getTotal(item));
+		}
+		return total;
+	}
+
 
 }
