@@ -1,9 +1,10 @@
 package br.exemplo.spring.conf;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,6 +18,8 @@ import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.google.common.cache.CacheBuilder;
 
 import br.exemplo.spring.component.FileSaver;
 import br.exemplo.spring.controllers.ProductsController;
@@ -32,10 +35,17 @@ public class AppWebConfiguration {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
-	
+
 	@Bean
 	public CacheManager cacheManager() {
-		return new ConcurrentMapCacheManager();
+		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
+										.maximumSize(100)
+										.expireAfterAccess(5,TimeUnit.MINUTES);
+		
+		GuavaCacheManager cacheManager = new GuavaCacheManager();
+		cacheManager.setCacheBuilder(builder);
+		return cacheManager;
+
 	}
 
 	@Bean
