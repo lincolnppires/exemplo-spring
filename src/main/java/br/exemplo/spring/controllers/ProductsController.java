@@ -3,6 +3,7 @@ package br.exemplo.spring.controllers;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -40,10 +41,8 @@ public class ProductsController {
 
 	@RequestMapping("/form")
 	public ModelAndView form(Product product) {
-		System.out.println("método form");
 		ModelAndView modelAndView = new ModelAndView("products/form");
 		modelAndView.addObject("types", BookType.values());
-
 		return modelAndView;
 	}
 
@@ -67,6 +66,7 @@ public class ProductsController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
+	@Cacheable(value="books")
 	public ModelAndView list() {
 		ModelAndView modelAndView = new ModelAndView("products/list");
 		modelAndView.addObject("products", productDAO.list());
