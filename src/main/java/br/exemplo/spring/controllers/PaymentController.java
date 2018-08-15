@@ -1,6 +1,7 @@
 package br.exemplo.spring.controllers;
 
 import java.math.BigDecimal;
+import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -27,19 +28,24 @@ public class PaymentController {
 	
 
 	@RequestMapping(value = "checkout", method = RequestMethod.POST, name = "checkoutPaymentController")
-	public String checkout() {
-		BigDecimal total = shoppingCart.getTotal();
+	public Callable<String> checkout() {
 		
-		//codigo de integração com a aplicação web chamada book-payment, hospedada atualmente no Heroku.
-		//só aceita pagamentos de até 500 reais e os dados devem ser enviados no formato Json
-		String uriToPay = "http://book-payment.herokuapp.com/payment";
-		
-		try {
-			String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
-			return "payment/success";
-		} catch (HttpClientErrorException e) {
-			e.printStackTrace();
-			return "payment/error";
+		return () -> {
+
+			BigDecimal total = shoppingCart.getTotal();
+			
+			//codigo de integração com a aplicação web chamada book-payment, hospedada atualmente no Heroku.
+			//só aceita pagamentos de até 500 reais e os dados devem ser enviados no formato Json
+			String uriToPay = "http://book-payment.herokuapp.com/payment";
+			
+			try {
+				String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
+				return "payment/success";
+			} catch (HttpClientErrorException e) {
+				e.printStackTrace();
+				return "payment/error";
+			}
+			
 		}
 		
 	}
