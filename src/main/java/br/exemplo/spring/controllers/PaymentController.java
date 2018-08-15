@@ -12,9 +12,11 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.request.async.DeferredResult;
 
 import br.exemplo.spring.models.PaymentData;
 import br.exemplo.spring.models.ShoppingCart;
+import br.exemplo.spring.service.IntegrandoComPagamento;
 
 @Controller
 @RequestMapping("/payment")
@@ -28,25 +30,16 @@ public class PaymentController {
 	
 
 	@RequestMapping(value = "checkout", method = RequestMethod.POST, name = "checkoutPaymentController")
-	public Callable<String> checkout() {
+	public DeferredResult<String> checkout() {
 		
-		return () -> {
-
-			BigDecimal total = shoppingCart.getTotal();
-			
-			//codigo de integração com a aplicação web chamada book-payment, hospedada atualmente no Heroku.
-			//só aceita pagamentos de até 500 reais e os dados devem ser enviados no formato Json
-			String uriToPay = "http://book-payment.herokuapp.com/payment";
-			
-			try {
-				String response = restTemplate.postForObject(uriToPay, new PaymentData(total), String.class);
-				return "payment/success";
-			} catch (HttpClientErrorException e) {
-				e.printStackTrace();
-				return "payment/error";
-			}
-			
-		}
+		BigDecimal total = shoppingCart.getTotal();
+		DeferredResult<String> result = new DeferredResult();
 		
+		IntegrandoComPagamento integrandoComPagamento = new IntegrandoComPagamento(result, total, restTemplate);
+				
+		Thread thread = new Thread(integrandoComPagamento);
+		thread.start();
+		return result;
+			
 	}
 }
