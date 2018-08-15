@@ -1,5 +1,7 @@
 package br.exemplo.spring.controllers;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -47,7 +50,7 @@ public class ProductsController {
 		return modelAndView;
 	}
 
-	@RequestMapping(method = RequestMethod.POST, name = "saveProduct")
+	@RequestMapping(method = RequestMethod.POST, name="saveProduct")
 	@CacheEvict(value="books", allEntries=true)
 	public ModelAndView save(MultipartFile summary, @Validated Product product, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes) {
@@ -73,6 +76,12 @@ public class ProductsController {
 		ModelAndView modelAndView = new ModelAndView("products/list");
 		modelAndView.addObject("products", productDAO.list());
 		return modelAndView;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="json")
+	@ResponseBody
+	public List<Product> listJson() {
+		return productDAO.list();
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value ="/show/{id}", name = "showProduct")
