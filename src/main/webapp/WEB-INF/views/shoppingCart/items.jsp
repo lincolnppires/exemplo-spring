@@ -16,26 +16,27 @@
 	<tbody>
 		<c:forEach items="${shoppingCart.list}" var="item">
 			<tr>
-				<td class="cart-img-col"><img src=""
-					alt="${item.product.title}" /></td>
-				<td class="item-title">${item.product.title}-${item.bookType}</td>
-				<td class="numeric-cell">${item.price}</td>
-				<td class="quantity-input-cell"><input type="number" min="0"
-					readonly="readonly" value="${shoppingCart.getQuantity(item)}">
+				<td>${item.product.title}  -  ${item.bookType}</td>
+				
+				<td>${item.price}</td>
+				
+				<td>
+					<input type="number" min="0" max="2"
+						readonly="readonly" value="${shoppingCart.getQuantity(item)}">
 				</td>
-				<td class="numeric-cell">${shoppingCart.getTotal(item)}</td>
+				<td>${shoppingCart.getTotal(item)}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 	<tfoot>
 		<tr>
 			<td colspan="2">
-				<form action="${spring:mvcUrl('PC#checkout').build()}" method="post">
-					<input type="submit" class="checkout" name="checkout"
+				<form action="${spring:mvcUrl('checkoutPaymentController').build()}" method="post">
+					<input type="submit" name="checkout"
 						value="Finalizar compra " id="checkout" />
 				</form>
 			</td>
-			<td class="numeric-cell">${shoppingCart.total}</td>
+			<td>${shoppingCart.total}</td>
 			<td></td>
 		</tr>
 	</tfoot>

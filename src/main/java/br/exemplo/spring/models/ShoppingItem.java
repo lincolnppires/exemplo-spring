@@ -25,7 +25,14 @@ public class ShoppingItem {
 	public BigDecimal getTotal(Integer quantity) {
 		return getPrice().multiply(new BigDecimal(quantity));
 	}
+	
+	public Product getProduct() {
+		return product;
+	}
 
+	public BookType getBookType() {
+		return bookType;
+	}
 	
 
 	@Override

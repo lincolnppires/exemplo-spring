@@ -20,7 +20,7 @@ public class ShoppingCart {
 		items.put(item, getQuantity(item) + 1);
 	}
 
-	private int getQuantity(ShoppingItem item) {
+	public int getQuantity(ShoppingItem item) {
 		
 		if (!items.containsKey(item)) {
 			items.put(item, 0);
@@ -36,7 +36,7 @@ public class ShoppingCart {
 		return items.keySet();
 	}
 	
-	private BigDecimal getTotal(ShoppingItem item) {
+	public BigDecimal getTotal(ShoppingItem item) {
 		return item.getTotal(getQuantity(item));
 	}
 
