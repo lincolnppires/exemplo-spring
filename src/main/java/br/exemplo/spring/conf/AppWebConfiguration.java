@@ -1,5 +1,7 @@
 package br.exemplo.spring.conf;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.cache.CacheManager;
@@ -13,10 +15,13 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.google.common.cache.CacheBuilder;
@@ -25,6 +30,7 @@ import br.exemplo.spring.component.FileSaver;
 import br.exemplo.spring.controllers.ProductsController;
 import br.exemplo.spring.daos.ProcuctDAO;
 import br.exemplo.spring.models.ShoppingCart;
+import br.exemplo.spring.viewresolver.JsonViewResolver;
 
 @EnableWebMvc
 @ComponentScan(basePackageClasses = { ProductsController.class, ProcuctDAO.class, FileSaver.class, ShoppingCart.class })
@@ -40,14 +46,13 @@ public class AppWebConfiguration {
 	public CacheManager cacheManager() {
 		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
 										.maximumSize(100)
-										.expireAfterAccess(5,TimeUnit.MINUTES);
-		
+										.expireAfterAccess(5,TimeUnit.MINUTES);		
 		GuavaCacheManager cacheManager = new GuavaCacheManager();
 		cacheManager.setCacheBuilder(builder);
 		return cacheManager;
 
 	}
-
+	
 	@Bean
 	public InternalResourceViewResolver internalResourceViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
@@ -55,7 +60,20 @@ public class AppWebConfiguration {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
+	
+	@Bean
+	public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
+		List<ViewResolver> resolvers = new ArrayList<ViewResolver>();
+		
+		resolvers.add(internalResourceViewResolver());
+		resolvers.add(new JsonViewResolver());
 
+		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+		resolver.setViewResolvers(resolvers);
+		resolver.setContentNegotiationManager(manager);
+		return resolver;
+	}
+	
 	@Bean(name = "messageSource")
 	public MessageSource loadBundle() {
 		ReloadableResourceBundleMessageSource bundle = new ReloadableResourceBundleMessageSource();

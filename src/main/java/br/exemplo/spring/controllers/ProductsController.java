@@ -77,12 +77,6 @@ public class ProductsController {
 		modelAndView.addObject("products", productDAO.list());
 		return modelAndView;
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, value="json")
-	@ResponseBody
-	public List<Product> listJson() {
-		return productDAO.list();
-	}
 
 	@RequestMapping(method = RequestMethod.GET, value ="/show/{id}", name = "showProduct")
 	public ModelAndView show(@PathVariable("id") 	Integer id) {
