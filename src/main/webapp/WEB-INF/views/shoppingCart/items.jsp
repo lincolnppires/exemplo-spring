@@ -31,10 +31,10 @@
 	<tfoot>
 		<tr>
 			<td colspan="2">
-				<form action="${spring:mvcUrl('checkoutPaymentController').build()}" method="post">
+				<form:form servletRelativeAction="${spring:mvcUrl('checkoutPaymentController').build()}">
 					<input type="submit" name="checkout"
 						value="Finalizar compra " id="checkout" />
-				</form>
+				</form:form>
 			</td>
 			<td>${shoppingCart.total}</td>
 			<td></td>
