@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.exemplo.spring.daos.ProcuctDAO;
+import br.exemplo.spring.daos.ProductDAO;
 import br.exemplo.spring.models.BookType;
 import br.exemplo.spring.models.Product;
 import br.exemplo.spring.models.ShoppingCart;
@@ -20,7 +20,7 @@ import br.exemplo.spring.models.ShoppingItem;
 public class ShoppingCartController {
 	
 	@Autowired
-	private ProcuctDAO productDAO;
+	private ProductDAO productDAO;
 	@Autowired
 	private ShoppingCart shoppingCart;
 	

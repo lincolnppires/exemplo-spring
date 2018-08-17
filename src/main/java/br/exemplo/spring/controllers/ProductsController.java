@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.exemplo.spring.component.FileSaver;
-import br.exemplo.spring.daos.ProcuctDAO;
+import br.exemplo.spring.daos.ProductDAO;
 import br.exemplo.spring.models.BookType;
 import br.exemplo.spring.models.Product;
 import br.exemplo.spring.validation.ProductValidator;
@@ -38,7 +38,7 @@ public class ProductsController {
 	}
 
 	@Autowired
-	private ProcuctDAO productDAO;
+	private ProductDAO productDAO;
 
 //	@Autowired
 //	private FileSaver fileSaver;

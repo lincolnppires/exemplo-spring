@@ -28,12 +28,12 @@ import com.google.common.cache.CacheBuilder;
 
 import br.exemplo.spring.component.FileSaver;
 import br.exemplo.spring.controllers.ProductsController;
-import br.exemplo.spring.daos.ProcuctDAO;
+import br.exemplo.spring.daos.ProductDAO;
 import br.exemplo.spring.models.ShoppingCart;
 import br.exemplo.spring.viewresolver.JsonViewResolver;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { ProductsController.class, ProcuctDAO.class, FileSaver.class, ShoppingCart.class })
+@ComponentScan(basePackageClasses = { ProductsController.class, ProductDAO.class, FileSaver.class, ShoppingCart.class })
 @EnableCaching
 public class AppWebConfiguration {
 
