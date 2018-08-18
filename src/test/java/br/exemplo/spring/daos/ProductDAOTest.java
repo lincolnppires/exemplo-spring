@@ -42,13 +42,11 @@ public class ProductDAOTest {
 				.newProduct(BookType.EBOOK, BigDecimal.TEN).more(4).buildAll();
 		ebooks.stream().forEach(productDAO::save);
 		
-		try {
-			//Verificar os dados no banco de dados - 
-			Thread.sleep(20000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(20000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 		
 		

@@ -1,7 +1,5 @@
 package br.exemplo.spring.controllers;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +13,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.exemplo.spring.component.FileSaver;
 import br.exemplo.spring.daos.ProductDAO;
 import br.exemplo.spring.models.BookType;
 import br.exemplo.spring.models.Product;
-import br.exemplo.spring.validation.ProductValidator;
-import javassist.bytecode.analysis.MultiType;
 
 @Transactional
 @Controller

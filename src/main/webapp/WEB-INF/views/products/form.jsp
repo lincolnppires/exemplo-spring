@@ -19,7 +19,7 @@
 			>
 			<!--action= ${spring:mvcUrl('saveProduct').build()} -->
 			<div>
-				<label for="title">Titulo-></label>
+				<label for="title">Titulo:</label>
 				<form:input path="title" />
 				<form:errors path="title" />
 			</div>
@@ -37,13 +37,13 @@
 			</div>
 
 			<div>
-				<label for="releaseDate">Data de Lançamento -  formato por anotação </label> 
+				<label for="releaseDate">Data de Lançamento - (dd/MM/yyyy) </label> 
 				<form:input path="releaseDate" id="releaseDate"/>
 				<form:errors path="releaseDate" />
 			</div>
 			
 			<div>
-				<label for="dateTemp">Data - formato registro bean</label> 
+				<label for="dateTemp">Data de Lançamento- (yyyy-MM-dd)</label> 
 				<form:input path="dateTemp" id="dateTemp"/>
 				<form:errors path="dateTemp" />
 			</div>
